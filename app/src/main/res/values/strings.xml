@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">book_app</string>
+    
+    <string-array name="stuses">
+        <item>Reading</item>
+        <item>Completed</item>
+        <item>On Hold</item>
+        <item>Dropped</item>
+        <item>Plan To Read</item>
+    </string-array>
 </resources>
