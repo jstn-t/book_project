@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/delete_all_books"
+        android:title="Delete all books"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/check_delete"
+        android:titleCondensed="Enable delete"
+        android:title="Enable swipe to delete"
+        app:showAsAction="never"
+        app:actionViewClass="android.widget.CheckBox"
+        android:checkable="true" />
+
+</menu>

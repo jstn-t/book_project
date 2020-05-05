@@ -41,6 +41,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
         notifyDataSetChanged();
     }
 
+    public Book getBookAt(int position) {
+        return books.get(position);
+    }
+
     class BookHolder extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
         private TextView textViewAuthor;
