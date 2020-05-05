@@ -15,7 +15,9 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class AddBookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddEditBookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    public static final String EXTRA_ID =
+            "com.example.book_app.EXTRA_ID";
     public static final String EXTRA_TITLE =
             "com.example.book_app.EXTRA_TITLE";
     public static final String EXTRA_AUTHOR =
@@ -47,7 +49,18 @@ public class AddBookActivity extends AppCompatActivity implements AdapterView.On
         spinnerStatus.setOnItemSelectedListener(this);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Book");
+        Intent intent = getIntent();
+
+        if(intent.hasExtra(EXTRA_ID)) {
+            setTitle("Edit Book");
+            editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE));
+            editTextAuthor.setText(intent.getStringExtra(EXTRA_AUTHOR));
+            //spinnerStatus.;
+            editTextPage.setText(intent.getStringExtra(EXTRA_PAGES));
+
+        } else {
+            setTitle("Add Book");
+        }
     }
 
     private void saveBook() {
@@ -67,6 +80,11 @@ public class AddBookActivity extends AppCompatActivity implements AdapterView.On
         data.putExtra(EXTRA_AUTHOR, author);
         data.putExtra(EXTRA_PAGES, pages);
         data.putExtra(EXTRA_STATUS, status);
+
+        int id = getIntent().getIntExtra(EXTRA_ID, -1);
+        if (id!=-1) {
+            data.putExtra(EXTRA_ID, id);
+        }
 
         setResult(RESULT_OK, data);
         finish();
@@ -93,7 +111,7 @@ public class AddBookActivity extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override

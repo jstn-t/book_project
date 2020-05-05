@@ -17,6 +17,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 public static final int ADD_BOOK_REQUEST = 1;
+public static final int EDIT_BOOK_REQUEST = 2;
+
     private BookViewModel bookViewModel;
 
     @Override
@@ -28,7 +30,7 @@ public static final int ADD_BOOK_REQUEST = 1;
         buttonAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddBookActivity.class);
+                Intent intent = new Intent(MainActivity.this, AddEditBookActivity.class);
                 startActivityForResult(intent,ADD_BOOK_REQUEST);
             }
         });
@@ -51,22 +53,52 @@ public static final int ADD_BOOK_REQUEST = 1;
                 adapter.setBooks(books);
             }
         });
+
+        adapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Book book) {
+                Intent intent = new Intent(MainActivity.this, AddEditBookActivity.class);
+                intent.putExtra(AddEditBookActivity.EXTRA_ID, book.getId());
+                intent.putExtra(AddEditBookActivity.EXTRA_TITLE, book.getTitle());
+                intent.putExtra(AddEditBookActivity.EXTRA_AUTHOR, book.getAuthor());
+                intent.putExtra(AddEditBookActivity.EXTRA_STATUS, book.getState());
+                intent.putExtra(AddEditBookActivity.EXTRA_PAGES, book.getPage_count());
+                startActivityForResult(intent, EDIT_BOOK_REQUEST);
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode==ADD_BOOK_REQUEST && resultCode==RESULT_OK) {
-            String title = data.getStringExtra(AddBookActivity.EXTRA_TITLE);
-            String author = data.getStringExtra(AddBookActivity.EXTRA_AUTHOR);
-            String status = data.getStringExtra(AddBookActivity.EXTRA_STATUS);
-            int pages = data.getIntExtra(AddBookActivity.EXTRA_PAGES, 0);
+            String title = data.getStringExtra(AddEditBookActivity.EXTRA_TITLE);
+            String author = data.getStringExtra(AddEditBookActivity.EXTRA_AUTHOR);
+            String status = data.getStringExtra(AddEditBookActivity.EXTRA_STATUS);
+            int pages = data.getIntExtra(AddEditBookActivity.EXTRA_PAGES, 0);
 
             Book book = new Book(title, author, status, pages);
             bookViewModel.insert(book);
 
             Toast.makeText(this, "Book Saved", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if (requestCode==EDIT_BOOK_REQUEST && resultCode==RESULT_OK) {
+            int id = data.getIntExtra(AddEditBookActivity.EXTRA_ID, -1);
+            if(id==-1) {
+                Toast.makeText(this, "Cannot be updated!", Toast.LENGTH_SHORT).show();
+            }
+            String title = data.getStringExtra(AddEditBookActivity.EXTRA_TITLE);
+            String author = data.getStringExtra(AddEditBookActivity.EXTRA_AUTHOR);
+            String status = data.getStringExtra(AddEditBookActivity.EXTRA_STATUS);
+            int pages = data.getIntExtra(AddEditBookActivity.EXTRA_PAGES, 0);
+
+            Book book = new Book(title, author, status, pages);
+            book.setId(id);
+            bookViewModel.update(book);
+
+            Toast.makeText(this, "Book updated", Toast.LENGTH_SHORT).show();
+
+        }
+        else {
             Toast.makeText(this, "Failed to save!", Toast.LENGTH_SHORT).show();
         }
 

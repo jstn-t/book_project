@@ -13,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
     private List<Book> books = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
     public BookHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_item,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_item, parent, false);
         return new BookHolder(itemView);
     }
 
@@ -40,7 +41,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
         notifyDataSetChanged();
     }
 
-    class BookHolder extends  RecyclerView.ViewHolder {
+    class BookHolder extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
         private TextView textViewAuthor;
         private TextView textViewState;
@@ -52,6 +53,24 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
             textViewAuthor = itemView.findViewById(R.id.text_view_author);
             textViewState = itemView.findViewById(R.id.text_view_state);
             textViewPage = itemView.findViewById(R.id.text_view_page_count);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(books.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Book book);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
