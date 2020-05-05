@@ -53,10 +53,11 @@ public class AddBookActivity extends AppCompatActivity implements AdapterView.On
     private void saveBook() {
         String title = editTextTitle.getText().toString();
         String author = editTextAuthor.getText().toString();
-        int pages = Integer.parseInt(editTextPage.getText().toString());
+        //int pages = Integer.parseInt(editTextPage.getText().toString());
+        int pages = Integer.parseInt("0" + editTextPage.getText().toString());
         String status = spinnerStatus.getSelectedItem().toString();
 
-        if (title.trim().isEmpty() || author.trim().isEmpty()) {
+        if (title.trim().isEmpty() || author.trim().isEmpty() || pages==0) {
             Toast.makeText(this, "Please fill out all the elements", Toast.LENGTH_SHORT);
             return;
         }
