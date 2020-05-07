@@ -9,7 +9,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@color/colorPrimary">
 
         <TextView
             android:id="@+id/text_view_state"
@@ -17,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:text="State"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:id="@+id/text_view_title"
@@ -27,14 +29,16 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:maxLines="1"
             android:layout_toStartOf="@id/text_view_state"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:id="@+id/text_view_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_view_title"
-            android:text="Author" />
+            android:text="Author"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:id="@+id/text_view_page_count"
@@ -42,7 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/text_view_state"
-            android:text="Page Count"/>
+            android:text="Page Count"
+            android:textColor="#FFFFFF"/>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -13,27 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Title"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textColor="#a49a87"/>
 
     <EditText
         android:id="@+id/edit_text_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Author"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textColor="#a49a87"/>
     <EditText
         android:id="@+id/edit_text_pages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Page Count"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:textColor="#a49a87"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Status"
         android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#a49a87"/>
     <Spinner
         android:id="@+id/spinner_status"
         android:layout_width="wrap_content"
