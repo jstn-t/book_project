@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:hint="Title"
         android:inputType="text"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#a49a87"/>
 
     <EditText
         android:id="@+id/edit_text_author"
@@ -22,14 +22,14 @@
         android:layout_height="wrap_content"
         android:hint="Author"
         android:inputType="text"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#a49a87"/>
     <EditText
         android:id="@+id/edit_text_pages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Page Count"
         android:inputType="number"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#a49a87"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         android:id="@+id/spinner_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ffffff"
+        android:textColor="#a49a87"
         android:popupBackground="@color/colorPrimaryDark" />
 
 
